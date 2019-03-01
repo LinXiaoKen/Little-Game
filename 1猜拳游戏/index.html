@@ -1,0 +1,154 @@
+<!doctype>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>猜拳游戏</title>
+        <style>
+            #img1,#img2{
+                width: 300px;
+                height: 300px;
+            }
+
+        </style>
+    </head>
+    <body onload="init()">
+            <div align="center">
+                <div><div><h1>猜拳</h1></div>
+                    <img id="img1" name=""> <img id="img2" >
+                </div>
+                <button id="botton" onclick="random()">随机出拳 </button>
+
+                <div>
+                    <input type="text" readonly="readonly" value="选择出拳" id="text1" onclick="textclick()" style="width: 200px;">
+
+                    <div style="height: 150px;overflow-x:hidden;display: none" id="uldiv" onblur="textclick()">
+                        <ul type="none" overflow="hidden" onclick="textclick()" >
+                            <li onclick="btn(this)" value="6"><img src="img/6.jpg" width="150px"></li>
+                            <li onclick="btn(this)" value="4"><img src="img/4.jpg"  width="150px"></li>
+                            <li onclick="btn(this)" value="5"><img src="img/5.jpg"  width="150px"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    <script>
+        function init() {
+            var img1 = document.getElementById("img1");
+            var  index=1;
+
+            timer = setInterval(()=>{
+                 var i=index%3+1;
+                img1.src="img/"+i+".jpg";
+                img1.name=i;
+                index++;
+
+            },100);
+        }
+
+
+        function textclick() {
+            var div = document.getElementById('uldiv');
+            var text = document.getElementById('text1');
+            div.style.width=text.style.width;
+            if(div.style.display=="none"){
+                div.style.display="block";
+            }
+            else{
+                div.style.display="none";
+            }
+
+        }
+
+        function btn(data) {
+            var img1 = document.getElementById("img1");
+            var img2 = document.getElementById("img2");
+            img2.src = "img/" + data.value + ".jpg";
+
+
+           setTimeout(()=>{
+                if (img1.name == 1) {
+                    if (data.value == 4) {
+                        alert("你赢了")
+                    }
+                    if (data.value == 5) {
+                        alert("你输了")
+                    }
+                    if (data.value == 6) {
+                        alert("平局")
+                    }
+                }
+
+                if (img1.name == 2) {
+                    if (data.value == 4) {
+                        alert("平局")
+                    }
+                    if (data.value == 5) {
+                        alert("你赢了")
+                    }
+                    if (data.value == 6) {
+                        alert("你输了")
+                    }
+                }
+                if (img1.name == 3) {
+                    if (data.value == 4) {
+                        alert("你输了")
+                    }
+                    if (data.value == 5) {
+                        alert("平局")
+                    }
+                    if (data.value == 6) {
+                        alert("你赢了")
+                    }
+                }
+            })
+
+
+            }
+
+        function random() {
+            var img1 = document.getElementById("img1");
+            var img2 = document.getElementById("img2");
+            var data =img2.value;
+            var arr=['4','5','6'];
+            data=arr[Math.round(Math.random()*2)];
+            img2.src="img/"+data+".jpg";
+            setTimeout(()=>{
+
+
+            if(img1.name==1){
+                if(data==4){
+                    alert("你赢了")
+                }
+                if(data==5){
+                    alert("你输了")
+                }
+                if(data==6){
+                    alert("平局")
+                }
+            }
+            if(img1.name==2){
+                if(data==4){
+                    alert("平局")
+                }
+                if(data==5){
+                    alert("你赢了")
+                }
+                if(data==6){
+                    alert("你输了")
+                }
+            }
+            if(img1.name==3){
+                if(data==4){
+                    alert("你输了")
+                }
+                if(data==5){
+                    alert("平局")
+                }
+                if(data==6){
+                    alert("你赢了")
+                }
+            }})
+        }
+
+    </script>
+    </body>
+</html>
